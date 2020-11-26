@@ -1,0 +1,12 @@
+name: molecule-viewer
+channels:
+  - anaconda
+  - schrodinger 
+  - rdkit
+dependencies:
+  - python=3.7
+  - pip
+  - pymol-bundle
+  - rdkit
+  - pip:
+    - chembl_webresource_client

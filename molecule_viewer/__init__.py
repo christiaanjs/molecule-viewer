@@ -1,1 +1,2 @@
-from molecule_viewer.protein import *
+from molecule_viewer.protein import Protein
+from molecule_viewer.chemical_molecule import ChemicalMolecule
