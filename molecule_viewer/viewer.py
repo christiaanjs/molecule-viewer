@@ -7,7 +7,7 @@ import pymol
 
 def init():
     print("Initialising PyMOL...")
-    pymol.pymol_argv = ["pymol", "-q"]
+    pymol.pymol_argv = ["pymol", "-q"] # Silent mode (-Q) seems to hang
     pymol.finish_launching()
 
 def quit():
@@ -17,7 +17,7 @@ def quit():
 def get_imports():
     from molecule_viewer.chemical_molecule import ChemicalMolecule
     from molecule_viewer.protein import Protein
-    return dict(ChemicalMolecule=ChemicalMolecule, Protein=Protein)
+    return dict(ChemicalMolecule=ChemicalMolecule, Protein=Protein, ConformationMethod=molecule_viewer.methods.ConformationMethod)
 
 def viewer(working_directory, default_conformation_method, scripts):
     if working_directory is not None:
@@ -45,7 +45,7 @@ def main():
                         help="Working directory where molecule files are stored.")
     parser.add_argument("scripts", help="Scripts to execute before entering interactive mode.", nargs="*")
     for method in molecule_viewer.methods.ConformationMethod:
-        help_text = f"Use the {method.name} method for 3D conformation."
+        help_text = f"Use the {method.name} method for 3D conformer generation."
         if method == molecule_viewer.methods._default_conformation_method:
             help_text += " (default)"
         parser.add_argument(f"--{method.name}", action="store_const", const=method, dest="default_conformation_method", help=help_text)
