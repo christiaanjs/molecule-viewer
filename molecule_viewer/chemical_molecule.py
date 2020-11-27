@@ -4,6 +4,7 @@ from rdkit.Chem import AllChem
 from pymol import cmd
 
 import molecule_viewer
+import molecule_viewer.methods
 from molecule_viewer.methods import ConformationMethod
 
 class ChemicalMolecule:
@@ -17,7 +18,9 @@ class ChemicalMolecule:
             self.molecule = next(res)
         
 
-    def show(self, name=None, method=ConformationMethod.MMFF94):
+    def show(self, name=None, method=None):
+        if method is None:
+            method = molecule_viewer.methods._default_conformation_method
         smiles = self.molecule["molecule_structures"]["canonical_smiles"]
         mol = Chem.AddHs(Chem.MolFromSmiles(smiles))
         AllChem.EmbedMolecule(mol)
