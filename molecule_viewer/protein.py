@@ -5,4 +5,5 @@ class Protein:
         self.pdbid = pdbid
 
     def show(self):
+        print(f"Showing protein {self.pdbid}...")
         cmd.fetch(self.pdbid)
