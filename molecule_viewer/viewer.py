@@ -7,7 +7,7 @@ import pymol
 
 def init():
     print("Initialising PyMOL...")
-    pymol.pymol_argv = ["pymol"]
+    pymol.pymol_argv = ["pymol", "-q"]
     pymol.finish_launching()
 
 def quit():
